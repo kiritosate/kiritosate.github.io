@@ -1,0 +1,33 @@
+*{
+    margin: 0!important;
+}
+#bold{
+    font-weight: bolder!important;
+}
+#mainimg{
+    filter: contrast(2);
+    filter: drop-shadow(29);
+}
+#btnico{
+    font-size: 3rem;
+    padding: .3rem;
+    width: 50%;
+    border-radius: .1em;
+}
+#btnico:active{
+    background-color: gray;
+}
+#social{
+    list-style: none;
+    padding: 0px;
+}
+#social>li a{
+    color: rgba(14, 9, 9, 0.802);
+}
+#social>li a i{
+    font-size: 2.5em;
+    padding: .1em;
+}
+#social>li a:active{
+    color:rgb(0, 0, 0)
+}
