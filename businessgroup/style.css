@@ -1,0 +1,57 @@
+*{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+#maintable{
+  width: 100%;
+  text-align: center;
+  
+}
+#webtitle{
+  background-image: url(images/corn.avif);
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 2rem;
+  column-span: 1;
+  padding: .5em;
+}
+#maintable tr td marquee{
+  width: 100%;
+  background-color:ghostwhite;
+}
+#menu{
+  background-color: aliceblue;
+}
+#menu>td a{
+  text-decoration: none;
+  color: black;
+  font-size: larger;
+}
+#menu>td{
+  padding: .6rem;
+}
+#menu>td:hover{
+  background-color:rgb(253, 223, 167);
+  overflow: hidden;
+}
+#footer td{
+  background-color: black;
+  padding: .5rem;
+}
+#footer td p
+{
+  color: gainsboro;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+.about-types{
+  width: 200px;
+  vertical-align: top;
+}
+
+#active-menu{
+  border-bottom: 2px solid black;
+  background: linear-gradient(rgb(253, 223, 167),rgb(254, 254, 254));
+}
