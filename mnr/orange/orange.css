@@ -1,0 +1,16 @@
+*{
+  text-transform: capitalize;
+  text-align: center;
+  font-family: tahoma;
+}
+body{
+  padding: 10%;
+  background-image:url("aot.png");
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: cover;
+  backdrop-filter: blur(10px);
+}
+#copy{
+  color: gray;
+}
