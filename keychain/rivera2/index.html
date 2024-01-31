@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="heart.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+</head>
+<style type="text/css">
+    *{
+        font-family: 'cursive', 'Lucida Handwriting', 'Brush Script MT', cursive;
+    }
+    .container{
+        position: absolute;
+        width: 85%;
+        left: 50%;
+        top: 25px;
+        transform: translate(-50%);
+        background-image: url();
+        justify-items: center;
+        align-items: center;
+    }
+    p{
+        text-align: justify!important;
+    }
+    audio{
+        width: 100%;
+    }
+    #imgs{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
+    }
+    .img{
+        width: 32.5%;
+        overflow: hidden!important;
+        height: 5%;
+    }
+    #imgs>.img img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #keychain{
+        position:relative;
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>To you my love,</h1>
+        <p>
+            I just wanted to let you know how much I appreciate having you in my life. For helping me through the bad times and being there to help me celebrate the good times, I cherish all of the moments that we share together.I am so lucky to have you by my side. Everything you do for me never goes unnoticed. I don't know what I did to deserve someone as wonderful as you, but I am eternally grateful to have your love, support, and affection.
+            Thank you for being you, and for having me by your side.
+            -then call sign. Or kung para kanino mo dedicate yon
+            <br>
+            Love    
+        <br>
+        <div class="key">
+            <img id="keychain" src="2.png" alt="mylove">
+        </div>
+        
+        <div id="imgs">
+            <div class="img">
+               <img src="c.jpg"> 
+            </div>
+            <div class="img">
+                <img src="d.jpg"> 
+             </div>
+             <div class="img">
+                <img src="a.jpg"> 
+             </div>
+        </div>
+        <br>
+        <audio controls autoplay>
+            <source src="music.mp3" type="audio/mp3">
+            <source src="music.mp3" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+</html>
