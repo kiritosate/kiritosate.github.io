@@ -32,11 +32,17 @@
         justify-content: space-evenly;
         box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
     }
-    #img{
+    .img{
         width: 32.5%;
-        overflow: hidden;
+        overflow: hidden!important;
+        height: 5%;
     }
-    #imgs>#img img{
+    #imgs>.img img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #keychain{
+        position:relative;
         width: 100%;
     }
 </style>
@@ -58,14 +64,18 @@
             Your Admirer<3
         </p>
         <br>
+        <div class="key">
+            <img id="keychain" src="aK17 KEYCHAIN.png" alt="mylove">
+        </div>
+        
         <div id="imgs">
-            <div id="img">
+            <div class="img">
                <img src="c.jpg"> 
             </div>
-            <div id="img">
+            <div class="img">
                 <img src="b.jpg"> 
              </div>
-             <div id="img">
+             <div class="img">
                 <img src="us.jpg"> 
              </div>
         </div>

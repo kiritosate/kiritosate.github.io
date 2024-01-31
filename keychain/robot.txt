@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For keychain uploads</title>
+</head>
+
+<body>
+
+  <h2>Upload Images, Music Title, Name, and Message</h2>
+
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <label for="music_title">Music Title:</label>
+    <input type="text" name="music_title" id="music_title" required>
+    
+    <br>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required>
+    
+    <br>
+
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" rows="4" cols="50"></textarea>
+    
+    <br>
+    <label>Image1</label>
+    <input type="file" name="image1" id="image1" required>
+    <br>
+    <label>Image2</label>
+    <input type="file" name="image2" id="image2" required>
+    <br>
+    <label>image3</label>
+    <input type="file" name="image3" id="image3" required>
+    <br>
+    <label>Image4</label>
+    <input type="file" name="image4" id="image4" required>
+    <br>
+
+    <input type="submit" value="Upload">
+  </form>
+
+</body>
+</html>
