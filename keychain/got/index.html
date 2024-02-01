@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="heart.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+</head>
+<style type="text/css">
+    *{
+        font-family: 'cursive', 'Lucida Handwriting', 'Brush Script MT', cursive;
+    }
+    .container{
+        position: absolute;
+        width: 85%;
+        left: 50%;
+        top: 25px;
+        transform: translate(-50%);
+        background-image: url();
+        justify-items: center;
+        align-items: center;
+    }
+    p{
+        text-align: justify!important;
+    }
+    audio{
+        width: 100%;
+    }
+    #imgs{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
+    }
+    .img{
+        width: 32.5%;
+        overflow: hidden!important;
+        height: 5%;
+    }
+    #imgs>.img img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #keychain{
+        position:relative;
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>28</h1>
+        <p>
+            
+            <br>
+        <div class="key">
+            <img id="keychain" src="2.png" alt="mylove">
+        </div>
+        
+        <div id="imgs">
+            <div class="img">
+               <img src="c.jpg"> 
+            </div>
+            <div class="img">
+                <img src="d.jpg"> 
+             </div>
+             <div class="img">
+                <img src="b.jpg"> 
+             </div>
+        </div>
+        <br>
+        <audio controls autoplay>
+            <source src="music.mp3" type="audio/mp3">
+            <source src="music.mp3" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+</html>
