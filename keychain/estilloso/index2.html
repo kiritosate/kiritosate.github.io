@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="heart.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+</head>
+<style type="text/css">
+    *{
+        font-family: 'cursive', 'Lucida Handwriting', 'Brush Script MT', cursive;
+    }
+    .container{
+        position: absolute;
+        width: 85%;
+        left: 50%;
+        top: 25px;
+        transform: translate(-50%);
+        background-image: url();
+        justify-items: center;
+        align-items: center;
+    }
+    p{
+        text-align: justify!important;
+    }
+    audio{
+        width: 100%;
+    }
+    #imgs{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
+    }
+    .img{
+        width: 32.5%;
+        overflow: hidden!important;
+        height: 5%;
+    }
+    #imgs>.img img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #keychain{
+        position:relative;
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="container">     
+        <h1>Malabo</h1>
+        <p>
+        
+            "Embrace the call to be a soldier with courage as your armor, discipline as your weapon, and honor as your shield. Your commitment to protect and serve embodies strength that transforms challenges into triumphs. You are the guardian of freedom, and your journey is a testament to bravery. Forge ahead, soldier, for you carry the legacy of heroes before you."
+            <br>
+            "Sa'yo, ang ilaw sa aking madilim na mundo. Ang iyong ngiti, musika sa aking puso. Sa babaeng nagbibigay kulay at saysay sa bawat araw ko, salamat sa pagiging espesyal. Ikaw ang bituin sa aking kalangitan."
+        </p>
+            <br>
+        <div class="key">
+            <img id="keychain" src="4.png" alt="mylove">
+        </div>
+        
+        <div id="imgs">
+            <div class="img">
+               <img src="e.jpg"> 
+            </div>
+            <div class="img">
+                <img src="f.jpg"> 
+             </div>
+             <div class="img">
+                <img src="h.jpg"> 
+             </div>
+        </div>
+        <br>
+        <audio controls autoplay>
+            <source src="music2.mp3" type="audio/mp3">
+            <source src="music2.mp3" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+</html>
