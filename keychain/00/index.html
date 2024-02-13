@@ -89,19 +89,7 @@
     <script type="text/javascript">
         const audioElement = document.getElementsByTagName("audio")[0];
 
-        audioElement.play()
-        .then(() => {
-            // Media started playing successfully
-        })
-        .catch((error) => {
-            if (error.name === "NotAllowedError") {
-            // Autoplay is not allowed
-            console.error("Autoplay not allowed: " + error);
-            } else {
-            // Some other error occurred
-            console.error("Error starting media: " + error);
-            }
-        });
+        audioElement.play();
     </script>
 </body>
 </html>
