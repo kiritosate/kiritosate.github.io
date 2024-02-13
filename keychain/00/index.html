@@ -87,9 +87,17 @@
         </audio>
     </div>
     <script type="text/javascript">
-        const audioElement = document.getElementsByTagName("audio")[0];
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to play the audio
+            function playMusic() {
+                var audio = document.getElementsByTagName("audio")[0];
+                audio.play();
+            }
 
-        audioElement.play();
+            // Call the playMusic function when the DOM is loaded
+            playMusic();
+        });
     </script>
 </body>
 </html>
