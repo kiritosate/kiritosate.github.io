@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="heart.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+</head>
+<style type="text/css">
+    *{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .container{
+        position: absolute;
+        width: 85%;
+        left: 50%;
+        top: 25px;
+        transform: translate(-50%);
+        background-image: url();
+        justify-items: center;
+        align-items: center;
+    }
+    p{
+        text-align: justify!important;
+    }
+    audio{
+        width: 100%;
+    }
+    #imgs{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
+    }
+    .img{
+        width: 32.5%;
+        overflow: hidden!important;
+        height: 5%;
+    }
+    #imgs>.img img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #keychain{
+        position:relative;
+        width: 100%;
+    }
+    #btn{
+        position: absolute;
+        z-index: 200;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background-color: azure;
+    }
+    #btn h1{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Dear sir Pol,</h1>
+        <p>
+            We are delighted to welcome you as our new CEO in our humble campus. We look forward to good partnership and collaboration as we embark on this journey. 
+        <br>
+        May god bless you sir, God speed! 
+        <br>
+        -Campus Student Council
+
+        </p>
+        <br>
+        <div class="key">
+            <img id="keychain" src="2.png" alt="mylove">
+        </div>
+        
+        <div id="imgs">
+             <div class="img">
+                <img src="b.jpg"> 
+             </div>
+        </div>
+
+        <br>
+        <audio controls>
+            <source src="music.mp3" type="audio/mp3">
+            <source src="music.mp3" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div id="btn">
+            <h1>
+                Play
+            </h1>
+        </div>
+    <script type="text/javascript">
+        document.getElementById("btn").addEventListener("click", function() {
+            document.getElementsByTagName("audio")[0].play();
+            this.style.display= "none";
+        });
+    </script>
+</body>
+</html>
