@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AnonGroupChat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/Bootstrap-Chat.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+</head>
+
+<style type="text/css">
+    .myMessage {
+    background-color: #E5E5EA;/* Light green background for my messages */
+    color: #000; /* Black text color */
+    text-align: right; /* Align my messages to the right */
+    padding: 8px; /* Add padding for better readability */
+    margin-bottom: 4px; /* Add margin to separate messages */
+    }
+
+    .theirMessage { /* Light gray background for other's messages */
+    color: #000; /* Black text color */
+    text-align: left; /* Align other's messages to the left */
+    padding: 8px; /* Add padding for better readability */
+    margin-bottom: 4px; /* Add margin to separate messages */
+    }
+
+    #msg-boxes>div h1{
+        text-transform: capitalize;
+    }
+    #msg-boxes>div p:nth-child(1){
+        font-size: smaller!important;
+    }
+</style>
+
+<body onload="showMsg()" >
+    
+    <div class="container">
+        <h1 class="text-center" style="padding: 18px;">AnonChatBox</h1>
+        <div>
+            <div class="col text-center"><strong class="text-center">Read More</strong></div>
+            <div class="col" style="margin: 7px;">
+                <div id="msg-boxes">
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <form class="text-start" style="text-align: left;display: flex;padding: 8px;">
+                    <input class="form-control" type="text" id="message">
+                    <svg xmlns="http://www.w3.org/2000/svg"  onclick="send_msg()" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-1 text-center text-bg-primary border rounded-0" style="margin: 0px;padding: 10px;width: 40px;height: 40px;">
+                        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M501.6 4.186c-7.594-5.156-17.41-5.594-25.44-1.063L12.12 267.1C4.184 271.7-.5037 280.3 .0431 289.4c.5469 9.125 6.234 17.16 14.66 20.69l153.3 64.38v113.5c0 8.781 4.797 16.84 12.5 21.06C184.1 511 188 512 191.1 512c4.516 0 9.038-1.281 12.99-3.812l111.2-71.46l98.56 41.4c2.984 1.25 6.141 1.875 9.297 1.875c4.078 0 8.141-1.031 11.78-3.094c6.453-3.625 10.88-10.06 11.95-17.38l64-432C513.1 18.44 509.1 9.373 501.6 4.186zM369.3 119.2l-187.1 208.9L78.23 284.7L369.3 119.2zM215.1 444v-49.36l46.45 19.51L215.1 444zM404.8 421.9l-176.6-74.19l224.6-249.5L404.8 421.9z""></path>
+                    </svg>
+                </form>
+            </div>
+        </div>
+        <div class="col" style="margin: 8px;"><button class="btn btn-primary" type="button" onclick="logout()" style="width: 100%;background: var(--bs-red);">logout</button></div>
+    </div>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+     <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
