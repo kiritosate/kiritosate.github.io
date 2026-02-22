@@ -1,69 +1,133 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IT Tech Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="max-w-4xl mx-auto p-6">
-    <!-- Header -->
-    <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
-      <img src="/mnt/data/A_black_and_black_and_white_portrait_photograph_fe.png" alt="Profile" class="w-40 h-40 object-cover rounded-2xl shadow-md" />
-      <div>
-        <h1 class="text-3xl font-bold">Your Name</h1>
-        <p class="text-gray-500">IT Technician • Programmer • Network Specialist</p>
-        <p class="mt-3 text-sm">Reliable IT professional specializing in troubleshooting, system maintenance, software development, and network solutions for businesses and individuals.</p>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-800">
+
+<div class="max-w-5xl mx-auto p-6">
+
+  <!-- HERO SECTION -->
+  <div class="bg-white shadow-xl rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 transition hover:shadow-2xl">
+    
+    <img src="me.jpg" alt="Profile"
+         class="w-44 h-44 object-cover rounded-3xl shadow-lg border-4 border-gray-100" />
+
+    <div class="text-center md:text-left">
+      <h1 class="text-4xl font-bold text-gray-900">Czedrick Versoza</h1>
+      <p class="text-blue-600 font-medium mt-1">
+        IT Technician • Programmer • Network Specialist
+      </p>
+
+      <p class="mt-4 text-sm text-gray-600 max-w-xl">
+        Reliable IT professional specializing in troubleshooting, system
+        maintenance, software development, and secure network solutions
+        for businesses and individuals.
+      </p>
+
+      <div class="mt-6 flex gap-4 justify-center md:justify-start">
+        <a href="#contact"
+           class="bg-blue-600 text-white px-5 py-2 rounded-xl shadow hover:bg-blue-700 transition">
+          Hire Me
+        </a>
+        <a href="#projects"
+           class="border border-gray-300 px-5 py-2 rounded-xl hover:bg-gray-100 transition">
+          View Projects
+        </a>
       </div>
-    </div><!-- Services -->
-<div class="mt-6 bg-white shadow-lg rounded-2xl p-6">
-  <h2 class="text-2xl font-semibold mb-4">Services Offered</h2>
-  <div class="grid md:grid-cols-3 gap-4 text-sm">
-    <div class="bg-gray-50 p-4 rounded-xl">
-      <h3 class="font-semibold">IT Support</h3>
-      <p>PC repair, troubleshooting, OS installation, maintenance.</p>
-    </div>
-    <div class="bg-gray-50 p-4 rounded-xl">
-      <h3 class="font-semibold">Programming</h3>
-      <p>Custom scripts, automation tools, web development.</p>
-    </div>
-    <div class="bg-gray-50 p-4 rounded-xl">
-      <h3 class="font-semibold">Networking</h3>
-      <p>Router setup, LAN configuration, security hardening.</p>
     </div>
   </div>
-</div>
 
-<!-- Skills -->
-<div class="mt-6 bg-white shadow-lg rounded-2xl p-6">
-  <h2 class="text-2xl font-semibold mb-4">Core Skills</h2>
-  <div class="flex flex-wrap gap-2 text-sm">
-    <span class="bg-gray-200 px-3 py-1 rounded-full">Windows / Linux</span>
-    <span class="bg-gray-200 px-3 py-1 rounded-full">Networking</span>
-    <span class="bg-gray-200 px-3 py-1 rounded-full">Hardware Repair</span>
-    <span class="bg-gray-200 px-3 py-1 rounded-full">Python / JavaScript</span>
-    <span class="bg-gray-200 px-3 py-1 rounded-full">Database Management</span>
+  <!-- SERVICES -->
+  <div class="mt-10 bg-white shadow-xl rounded-3xl p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Services Offered</h2>
+
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+
+      <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-md transition">
+        <h3 class="font-semibold text-lg mb-2">🖥 IT Support</h3>
+        <p>PC repair, troubleshooting, OS installation, system maintenance, and virus removal.</p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-md transition">
+        <h3 class="font-semibold text-lg mb-2">💻 Programming</h3>
+        <p>Custom automation scripts, web applications, dashboards, and business tools.</p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-md transition">
+        <h3 class="font-semibold text-lg mb-2">🌐 Networking</h3>
+        <p>Router configuration, LAN setup, WiFi optimization, and security hardening.</p>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<!-- Contact -->
-<div class="mt-6 bg-white shadow-lg rounded-2xl p-6">
-  <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-  <p class="text-sm">📞 Contact Number: <span class="font-medium">+63 XXX XXX XXXX</span></p>
-  <p class="text-sm mt-2">📧 Email: your@email.com</p>
-  <p class="text-sm mt-2">🌐 Social Media:</p>
-  <div class="flex gap-3 mt-2 text-sm">
-    <a href="#" class="text-blue-600 hover:underline">Facebook</a>
-    <a href="#" class="text-blue-600 hover:underline">LinkedIn</a>
-    <a href="#" class="text-blue-600 hover:underline">GitHub</a>
+  <!-- PROJECTS -->
+  <div id="projects" class="mt-10 bg-white shadow-xl rounded-3xl p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Featured Projects</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+
+      <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-md transition">
+        <h3 class="font-semibold text-lg">Inventory Management System</h3>
+        <p class="mt-2 text-gray-600">
+          Developed a web-based inventory tracking system using Python and SQL
+          for small businesses.
+        </p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-md transition">
+        <h3 class="font-semibold text-lg">Network Infrastructure Setup</h3>
+        <p class="mt-2 text-gray-600">
+          Designed and deployed secure LAN/WAN infrastructure for a local office.
+        </p>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<!-- Footer -->
-<div class="text-center text-xs text-gray-500 mt-6">
-  © 2026 Your Name — IT Services Portfolio
-</div>
+  <!-- SKILLS -->
+  <div class="mt-10 bg-white shadow-xl rounded-3xl p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Core Skills</h2>
 
+    <div class="flex flex-wrap justify-center gap-3 text-sm">
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">Windows / Linux</span>
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">Networking</span>
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">Hardware Repair</span>
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">Python</span>
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">JavaScript</span>
+      <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full">Database Management</span>
+    </div>
   </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="mt-10 bg-white shadow-xl rounded-3xl p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Contact Me</h2>
+
+    <div class="text-center text-sm space-y-3">
+      <p>📞 <span class="font-medium">+63 929 502 3631</span></p>
+      <p>📧 czedrickversoza@gmail.com</p>
+
+      <div class="flex justify-center gap-6 mt-4">
+        <a href="https://www.facebook.com/iamkiritosate" class="text-blue-600 hover:text-blue-800 transition">Facebook</a>
+        <a href="https://github.com/kiritosate" class="text-blue-600 hover:text-blue-800 transition">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="text-center text-xs text-gray-500 mt-10">
+    © 2026 Czedrick Versoza — IT Services Portfolio
+  </div>
+
+</div>
+
 </body>
 </html>
