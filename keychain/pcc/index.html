@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You, Philippine Carabao Center</title>
+
+  <style>
+    :root{
+      --green:#0b5d3b;
+      --green-2:#16794d;
+      --green-3:#073f2a;
+      --gold:#f4b62c;
+      --ink:#17322a;
+      --muted:#62736d;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Segoe UI",Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 20% 12%,rgba(255,255,255,.95),transparent 28%),
+        linear-gradient(135deg,#f8fff9 0%,#fff9e9 48%,#eefaf2 100%);
+      overflow-x:hidden;
+    }
+
+    .orb{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(4px);
+      opacity:.13;
+      z-index:-1;
+      pointer-events:none;
+      animation:float 8s ease-in-out infinite;
+    }
+    .o1{width:300px;height:300px;background:var(--green);left:-90px;top:-70px}
+    .o2{width:210px;height:210px;background:var(--gold);right:4%;top:8%;animation-delay:-2s}
+    .o3{width:360px;height:360px;background:var(--green-2);right:-140px;bottom:-120px;animation-delay:-4s}
+
+    .page{
+      width:min(1160px,92vw);
+      margin:0 auto;
+      padding:34px 0 60px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.90);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(11,93,59,.12);
+      border-radius:30px;
+      box-shadow:0 28px 80px rgba(15,61,43,.15);
+      overflow:hidden;
+    }
+
+    .topbar{
+      height:10px;
+      background:linear-gradient(90deg,var(--green),var(--gold),var(--green));
+      background-size:200% 100%;
+      animation:shine 5s linear infinite;
+    }
+
+    .hero{
+      padding:58px 52px 34px;
+      text-align:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:9px 18px;
+      border-radius:999px;
+      background:rgba(11,93,59,.08);
+      color:var(--green);
+      font-weight:800;
+      letter-spacing:.18em;
+      font-size:.82rem;
+      text-transform:uppercase;
+      opacity:0;
+      transform:translateY(14px);
+      animation:reveal .8s ease forwards .15s;
+    }
+
+    h1{
+      margin:22px auto 8px;
+      font-size:clamp(2.4rem,6vw,5rem);
+      line-height:.95;
+      color:var(--green);
+      letter-spacing:-.04em;
+      opacity:0;
+      transform:translateY(24px);
+      animation:reveal .9s cubic-bezier(.2,.7,.2,1) forwards .35s;
+    }
+
+    .subtitle{
+      margin:0;
+      color:#7f6414;
+      font-size:clamp(1rem,2.1vw,1.42rem);
+      font-weight:700;
+      opacity:0;
+      animation:fade .8s ease forwards .65s;
+    }
+
+    .divider{
+      width:120px;
+      height:5px;
+      margin:28px auto;
+      border-radius:99px;
+      background:linear-gradient(90deg,var(--green),var(--gold));
+      transform:scaleX(0);
+      animation:grow 1s ease forwards .8s;
+    }
+
+    .message{
+      max-width:920px;
+      margin:0 auto;
+      font-size:clamp(1.08rem,2.1vw,1.45rem);
+      line-height:1.8;
+      font-weight:600;
+      color:#304c43;
+      opacity:0;
+      transform:translateY(18px);
+      animation:reveal 1s ease forwards 1s;
+    }
+    .message strong{color:var(--green)}
+
+    .thanks{
+      margin-top:30px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(1.35rem,3vw,2rem);
+      font-style:italic;
+      color:#a87500;
+      opacity:0;
+      animation:fade 1s ease forwards 1.4s;
+    }
+
+    .hero-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:28px;
+      padding:12px 20px;
+      border-radius:999px;
+      background:var(--green);
+      color:white;
+      text-decoration:none;
+      font-weight:800;
+      box-shadow:0 10px 25px rgba(11,93,59,.22);
+      transition:.25s ease;
+    }
+    .hero-link:hover{transform:translateY(-2px)}
+
+    .footer{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg,#084b31,#0c6843);
+      color:white;
+      text-align:center;
+      padding:22px 28px;
+    }
+
+    .footer::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.12) 45%,transparent 70%);
+      transform:translateX(-120%);
+      animation:sweep 5s ease-in-out infinite 2s;
+    }
+
+    .footer span{
+      position:relative;
+      font-weight:800;
+      letter-spacing:.14em;
+      font-size:clamp(.85rem,1.5vw,1rem);
+    }
+
+    /* PHOTO ALBUM */
+    .album-section{
+      margin-top:34px;
+      background:rgba(255,255,255,.90);
+      border:1px solid rgba(11,93,59,.12);
+      border-radius:30px;
+      box-shadow:0 24px 65px rgba(15,61,43,.11);
+      padding:34px;
+    }
+
+    .album-head{
+      margin-bottom:24px;
+      text-align:center;
+    }
+
+    .album-head small{
+      display:block;
+      color:#a87500;
+      font-weight:800;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+
+    .album-head h2{
+      margin:0;
+      font-size:clamp(2rem,4vw,3.2rem);
+      color:var(--green);
+      letter-spacing:-.035em;
+    }
+
+    .album-head p{
+      max-width:760px;
+      margin:10px auto 0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+    }
+
+    .photo{
+      position:relative;
+      min-height:260px;
+      border-radius:22px;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg,rgba(11,93,59,.08),rgba(244,182,44,.13));
+      border:2px dashed rgba(11,93,59,.22);
+      box-shadow:0 10px 28px rgba(15,61,43,.08);
+      opacity:0;
+      transform:translateY(20px) scale(.98);
+      animation:photoIn .7s ease forwards;
+    }
+
+    .photo:nth-child(1){grid-column:span 7;min-height:410px;animation-delay:.08s}
+    .photo:nth-child(2){grid-column:span 5;min-height:410px;animation-delay:.14s}
+    .photo:nth-child(3),
+    .photo:nth-child(4),
+    .photo:nth-child(5){grid-column:span 4;animation-delay:.22s}
+    .photo:nth-child(6),
+    .photo:nth-child(7){grid-column:span 6;animation-delay:.28s}
+    .photo:nth-child(8){grid-column:span 12;min-height:330px;animation-delay:.34s}
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:absolute;
+      inset:0;
+      display:none;
+      transition:transform .45s ease,filter .45s ease;
+    }
+
+    .photo.has-image{
+      cursor:pointer;
+      border-style:solid;
+      border-color:rgba(244,182,44,.45);
+    }
+
+    .photo.has-image img{display:block}
+
+    .photo.has-image:hover img{
+      transform:scale(1.045);
+      filter:saturate(1.06) contrast(1.03);
+    }
+
+    .placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+      color:var(--green);
+    }
+
+    .photo.has-image .placeholder{display:none}
+
+    .placeholder-icon{
+      width:62px;
+      height:62px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      margin-bottom:12px;
+      background:rgba(255,255,255,.72);
+      box-shadow:0 8px 24px rgba(11,93,59,.08);
+      font-size:1.8rem;
+    }
+
+    .placeholder strong{
+      font-size:1rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .placeholder span{
+      margin-top:5px;
+      font-size:.84rem;
+      color:#758980;
+    }
+
+    .caption{
+      position:absolute;
+      left:0;right:0;bottom:0;
+      padding:50px 18px 16px;
+      color:white;
+      font-weight:800;
+      background:linear-gradient(transparent,rgba(0,0,0,.72));
+      display:none;
+    }
+
+    .photo.has-image .caption{display:block}
+
+    .template-note{
+      margin-top:20px;
+      padding:16px 18px;
+      border-radius:16px;
+      background:#f4faf6;
+      border:1px solid rgba(11,93,59,.1);
+      color:#567067;
+      font-size:.92rem;
+      line-height:1.6;
+    }
+
+    code{
+      background:#e7f2ea;
+      color:#0a5638;
+      padding:2px 6px;
+      border-radius:6px;
+    }
+
+    /* LIGHTBOX */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(4,24,16,.92);
+      padding:24px;
+    }
+
+    .lightbox.open{display:flex}
+
+    .lightbox-inner{
+      position:relative;
+      width:min(1100px,95vw);
+      max-height:90vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .lightbox img{
+      max-width:100%;
+      max-height:78vh;
+      object-fit:contain;
+      border-radius:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .lightbox-caption{
+      color:white;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .close,.nav{
+      border:0;
+      border-radius:50%;
+      background:white;
+      color:var(--green);
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .close{
+      position:absolute;
+      top:-12px;
+      right:0;
+      width:44px;height:44px;
+      font-size:1.5rem;
+      z-index:2;
+    }
+
+    .nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px;height:48px;
+      font-size:1.7rem;
+    }
+    .prev{left:-8px}
+    .next{right:-8px}
+
+    @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+    @keyframes fade{to{opacity:1}}
+    @keyframes grow{to{transform:scaleX(1)}}
+    @keyframes shine{from{background-position:0 0}to{background-position:200% 0}}
+    @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,18px)}}
+    @keyframes sweep{0%,15%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
+    @keyframes photoIn{to{opacity:1;transform:translateY(0) scale(1)}}
+
+    @media(max-width:800px){
+      .hero{padding:40px 22px 24px}
+      .album-section{padding:24px 18px}
+      .gallery{grid-template-columns:1fr}
+      .photo,
+      .photo:nth-child(1),
+      .photo:nth-child(2),
+      .photo:nth-child(3),
+      .photo:nth-child(4),
+      .photo:nth-child(5),
+      .photo:nth-child(6),
+      .photo:nth-child(7),
+      .photo:nth-child(8){
+        grid-column:auto;
+        min-height:280px;
+      }
+      .card,.album-section{border-radius:22px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important}
+      .badge,h1,.subtitle,.message,.thanks,.photo{opacity:1;transform:none}
+      .divider{transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+
+  <main class="page">
+    <section class="card">
+      <div class="topbar"></div>
+
+      <div class="hero">
+        <div class="badge">A Message of Gratitude</div>
+        <h1>Thank You, PCC Family!</h1>
+        <p class="subtitle">Philippine Carabao Center</p>
+
+        <div class="divider"></div>
+
+        <p class="message">
+          On behalf of all the trainees, thank you to the
+          <strong>Philippine Carabao Center family!</strong>
+          Your dedication to teaching us, guiding us, and looking after us did not go unnoticed.
+          We are proud to have trained here and learned from the best team.
+          May you continue to inspire more young people and help more farmers.
+          <strong>Thank you for shaping our future!</strong>
+        </p>
+
+        <div class="thanks">With heartfelt gratitude, from all the trainees.</div>
+        <a class="hero-link" href="#memories">View Our Memories ↓</a>
+      </div>
+
+      <div class="footer">
+        <span>LEARN • EXPERIENCE • GROW</span>
+      </div>
+    </section>
+
+    <section class="album-section" id="memories">
+      <div class="album-head">
+        <small>Our OJT Journey</small>
+        <h2>Memories at PCC</h2>
+        <p>
+          A collection of moments, lessons, friendships, and experiences that made our
+          on-the-job training at the Philippine Carabao Center unforgettable.
+        </p>
+      </div>
+
+      <!--
+        PHOTO TEMPLATE:
+        Put your images inside a folder named "photos" beside this HTML file.
+        Recommended filenames:
+        photo1.jpg, photo2.jpg, photo3.jpg ... photo8.jpg
+
+        To change a caption, edit the data-caption and caption text below.
+      -->
+
+      <div class="gallery" id="gallery">
+
+        <article class="photo" data-caption="Our OJT Family">
+          <img src="photos/photo1.png" alt="OJT Memory 1">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 01</strong><span>photos/photo1.jpg</span></div>
+          <div class="caption">Our OJT Family</div>
+        </article>
+	
+        <article class="photo" data-caption="Learning Together">
+          <img src="photos/photo2.jpg" alt="OJT Memory 2">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 02</strong><span>photos/photo2.jpg</span></div>
+          <div class="caption">Learning Together</div>
+        </article>
+
+        <article class="photo" data-caption="Hands-On Experience">
+          <img src="photos/photo3.jpg" alt="OJT Memory 3">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 03</strong><span>photos/photo3.jpg</span></div>
+          <div class="caption">Hands-On Experience</div>
+        </article>
+
+        <article class="photo" data-caption="Skills in Action">
+          <img src="photos/photo4.jpg" alt="OJT Memory 4">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 04</strong><span>photos/photo4.jpg</span></div>
+          <div class="caption">Skills in Action</div>
+        </article>
+
+        <article class="photo" data-caption="Teamwork">
+          <img src="photos/photo5.jpg" alt="OJT Memory 5">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 05</strong><span>photos/photo5.jpg</span></div>
+          <div class="caption">Teamwork</div>
+        </article>
+
+        <article class="photo" data-caption="PCC Experience">
+          <img src="photos/photo6.jpg" alt="OJT Memory 6">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 06</strong><span>photos/photo6.jpg</span></div>
+          <div class="caption">PCC Experience</div>
+        </article>
+<!--
+        <article class="photo" data-caption="Moments to Remember">
+          <img src="photos/photo7.jpg" alt="OJT Memory 7">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 07</strong><span>photos/photo7.jpg</span></div>
+          <div class="caption">Moments to Remember</div>
+        </article>
+
+        <article class="photo" data-caption="Thank You, PCC Family!">
+          <img src="photos/photo8.jpg" alt="OJT Memory 8">
+          <div class="placeholder"><div class="placeholder-icon">📷</div><strong>Photo 08</strong><span>photos/photo8.jpg</span></div>
+          <div class="caption">Thank You, PCC Family!</div>
+        </article>
+	
+      </div>
+	
+      <div class="template-note">
+        <strong>How to add your photos:</strong>
+        create a folder named <code>photos</code> in the same location as this HTML file,
+        then add your pictures as <code>photo1.jpg</code> through <code>photo8.jpg</code>.
+        You can also edit the filenames, captions, or add more album cards directly in the HTML.
+      </div>-->
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="close" type="button" onclick="closeLightbox()">×</button>
+      <button class="nav prev" type="button" onclick="moveLightbox(-1)">‹</button>
+      <img id="lightboxImg" src="" alt="">
+      <button class="nav next" type="button" onclick="moveLightbox(1)">›</button>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    const gallery = document.getElementById("gallery");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    let currentIndex = 0;
+
+    const allCards = [...gallery.querySelectorAll(".photo")];
+
+    allCards.forEach(card => {
+      const img = card.querySelector("img");
+
+      img.addEventListener("load", () => {
+        card.classList.add("has-image");
+      });
+
+      img.addEventListener("error", () => {
+        card.classList.remove("has-image");
+      });
+
+      card.addEventListener("click", () => {
+        if (!card.classList.contains("has-image")) return;
+        const available = getAvailablePhotos();
+        currentIndex = available.indexOf(card);
+        openLightbox(currentIndex);
+      });
+    });
+
+    function getAvailablePhotos(){
+      return [...gallery.querySelectorAll(".photo.has-image")];
+    }
+
+    function openLightbox(index){
+      const list = getAvailablePhotos();
+      if (!list.length) return;
+
+      currentIndex = (index + list.length) % list.length;
+      const card = list[currentIndex];
+      const img = card.querySelector("img");
+
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = card.dataset.caption || "";
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function moveLightbox(direction){
+      openLightbox(currentIndex + direction);
+    }
+
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") moveLightbox(-1);
+      if (e.key === "ArrowRight") moveLightbox(1);
+    });
+  </script>
+</body>
+</html>
