@@ -3,39 +3,1023 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2570359761172649"
-     crossorigin="anonymous"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-     <script src="https://kit.fontawesome.com/1c069baa55.js" crossorigin="anonymous"></script>
-    <title>I Am Kirito!</title>
+    <title>Kirito Sate | Developer, Gamer & Weeb</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-cyan: #00f2fe;
+            --accent-purple: #9d4edd;
+            --accent-pink: #f72585;
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --glass-glow: 0 8px 32px 0 rgba(0, 242, 254, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main) !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Override Bootstrap dark text defaults globally */
+        p, span, div, h1, h2, h3, h4, h5, h6, label, input, textarea, button, li, a {
+            color: var(--text-main);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        /* Dynamic form inputs override for high contrast */
+        .form-control, .form-control:focus {
+            background-color: rgba(11, 15, 25, 0.9) !important;
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* Particle Canvas Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Content Wrapper */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-cyan);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: var(--glass-glow);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(20px);
+            opacity: 0.6;
+            animation: pulse-glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            font-family: 'Fira Code', monospace;
+            min-height: 2.2rem;
+        }
+
+        /* Buttons */
+        .btn-cyber {
+            background: linear-gradient(135deg, var(--accent-cyan), #0072ff);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+            color: #000;
+        }
+
+        .btn-cyber-outline {
+            background: transparent;
+            color: var(--text-main);
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cyber-outline:hover {
+            border-color: var(--accent-purple);
+            background: rgba(157, 78, 221, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Social Icons */
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            margin: 0 8px;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #fff;
+            transform: translateY(-50px) scale(1.1);
+        }
+
+        .social-link.fb:hover { background: #1877f2; border-color: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.5); }
+        .social-link.yt:hover { background: #ff0000; border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+        .social-link.email:hover { background: var(--accent-pink); border-color: var(--accent-pink); box-shadow: 0 0 15px rgba(247, 37, 133, 0.5); }
+        .social-link.gh:hover { background: #333; border-color: #fff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+            border-radius: 2px;
+        }
+
+        /* Skills Progress Bars */
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .progress {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 20px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Tech Badges */
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            font-size: 0.9rem;
+            color: #ffffff !important;
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: var(--accent-cyan);
+            color: #ffffff !important;
+            transform: translateY(-2px);
+        }
+
+        /* Project Cards & Filters */
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-muted) !important;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin: 0 4px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19 !important;
+            border-color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .project-card {
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        /* Toast Popup Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .custom-toast {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-cyan);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px 24px;
+            box-shadow: var(--glass-glow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .custom-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .avatar-container { width: 180px; height: 180px; }
+        }
+    </style>
 </head>
 <body>
-    <div class="jumbotron">
-        <div class="text-center pt-5">
-            <img src="prof.png" alt="anonymous" id="mainimg" class="rounded mx-auto d-block p-5">
-            <div class="content">
-                <div class="text-center p-3">
-                    <div class="display-1 text-capitalize" id="bold">
-                        Hello;
-                    </div>
-                    <div class="display-7 text-capitalize p-3" id="bold">
-                        i am kirito sate, a college student, weeb and a gamer.
-                    </div>
-                    <ul class="d-flex justify-content-center text-center" id="social">
-                        <li><a href="https://www.facebook.com/iamkiritosate"><i class="fa-brands fa-facebook-square"></i></a></li>
-                        <li ><a href="https://www.youtube.com/channel/UC3OqoC5u04De1P2HJ4glRdw"><i class="fa-brands fa-youtube-square"></i></a></li>
-                        <li><a href="mailto:perverted.issei@gmail.com"><i class="fa-solid fa-square-envelope"></i></a></li>
-                        <li><a href="https://github.com/kiritosate"><i class="fa-brands fa-github-square"></i></a></li>
+
+    <!-- Canvas Background for Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Background Ambient Glows -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="content-layer">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">&lt;Kirito Sate/&gt;</a>
+                <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-center mt-3 mt-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="row align-items-center gy-5">
+                    <div class="col-lg-5 text-center order-lg-2">
+                        <div class="avatar-container">
+                            <div class="avatar-glow"></div>
+                            <img src="https://avatars.githubusercontent.com/u/89658253?v=4" 
+                                 alt="Kirito Sate Avatar" 
+                                 class="avatar-img"
+                                 onerror="this.src='https://placehold.co/300x300/121826/00f2fe?text=Kirito+Sate'">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 text-center text-lg-start order-lg-1">
+                        <div class="badge px-3 py-2 rounded-pill mb-3" style="background: rgba(0, 242, 254, 0.1); color: var(--accent-cyan); border: 1px solid rgba(0, 242, 254, 0.2);">
+                            <i class="fa-solid fa-circle-dot me-2 fs-6" style="color: #00ff88;"></i>Available for Collaborations
+                        </div>
+                        <h1 class="hero-title mb-2">Hello, I'm <br><span style="background: linear-gradient(135deg, #00f2fe, #9d4edd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Kirito Sate</span></h1>
+                        <div class="hero-subtitle mb-4">
+                            &gt; <span id="typing-text"></span><span class="blinking-cursor">|</span>
+                        </div>
+                        <p class="text-muted fs-5 mb-4 max-w-lg">
+                            Passionate college student blending code, gaming, and anime culture into cool digital experiences. Always exploring new frameworks and leveling up skills!
+                        </p>
+                        
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mb-4">
+                            <a href="#projects" class="btn btn-cyber">Explore Work <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                            <a href="#contact" class="btn btn-cyber-outline">Let's Connect</a>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="d-flex justify-content-center justify-content-lg-start align-items-center gap-2">
+                            <a href="https://www.facebook.com/iamkiritosate" target="_blank" class="social-link fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/channel/UC3OqoC5u04De1P2HJ4glRdw" target="_blank" class="social-link yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="mailto:perverted.issei@gmail.com" class="social-link email" title="Direct Email"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="https://github.com/kiritosate" target="_blank" class="social-link gh" title="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-5">
+            <div class="container py-4">
+                <h2 class="section-title">About Me</h2>
+                
+                <div class="row g-4 mt-2">
+                    <div class="col-lg-8">
+                        <div class="glass-card p-4 p-md-5 h-100">
+                            <h3 class="h4 mb-3" style="color: var(--accent-cyan);">Who Am I?</h3>
+                            <p class="text-muted lh-lg">
+                                I am an enthusiastic Information Technology / Computer Science student with a deep passion for modern web technologies, open-source development, and creative digital media. 
+                            </p>
+                            <p class="text-muted lh-lg">
+                                When I'm not writing code or experimenting with new web interfaces, you'll find me immersed in competitive gaming, streaming anime, or tinkering with software tools. My goal is to craft intuitive, aesthetically pleasing, and efficient applications.
+                            </p>
+                            
+                            <!-- Highlights Grid -->
+                            <div class="row g-3 mt-4">
+                                <div class="col-sm-6">
+                                    <div class="p-3 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid var(--card-border);">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="fa-solid fa-graduation-cap fs-3" style="color: var(--accent-purple);"></i>
+                                            <div>
+                                                <div class="text-muted small">Status</div>
+                                                <div class="fw-bold">College Student</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="p-3 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid var(--card-border);">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="fa-solid fa-gamepad fs-3" style="color: var(--accent-cyan);"></i>
+                                            <div>
+                                                <div class="text-muted small">Passions</div>
+                                                <div class="fw-bold">Gamer & Weeb</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Stats / Quick Facts -->
+                    <div class="col-lg-4">
+                        <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h3 class="h5 mb-4 text-white"><i class="fa-solid fa-fire text-danger me-2"></i>Quick Specs</h3>
+                                
+                                <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa-solid fa-laptop-code me-2"></i>Focus</span>
+                                        <span class="badge bg-dark border border-secondary text-white">Web Dev</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa-solid fa-tv me-2"></i>Favorite Anime</span>
+                                        <span class="badge bg-dark border border-secondary text-white">SAO / Highschool DxD</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa-solid fa-headset me-2"></i>Gaming Genres</span>
+                                        <span class="badge bg-dark border border-secondary text-white">RPG / FPS / Action</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa-solid fa-code-branch me-2"></i>VCS</span>
+                                        <span class="badge bg-dark border border-secondary text-white">Git / GitHub</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-4 p-3 rounded-3 text-center" style="background: rgba(157, 78, 221, 0.15); border: 1px dashed var(--accent-purple);">
+                                <span class="small text-white">"Stay focused, push code, play hard."</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-5">
+            <div class="container py-4">
+                <h2 class="section-title">Skills & Tech Stack</h2>
+
+                <div class="row g-4 mt-2">
+                    <!-- Technical Proficiency Progress Bars -->
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4 p-md-5 h-100">
+                            <h3 class="h5 mb-4 text-white"><i class="fa-solid fa-code text-info me-2"></i>Core Competencies</h3>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="text-white">HTML5 / CSS3 / JavaScript</span>
+                                    <span style="color: var(--accent-cyan); font-weight: bold;">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="text-white">Bootstrap 5 / Responsive Design</span>
+                                    <span style="color: var(--accent-cyan); font-weight: bold;">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 80%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="text-white">C++ / Python Basics</span>
+                                    <span style="color: var(--accent-cyan); font-weight: bold;">65%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 65%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item mb-0">
+                                <div class="skill-info">
+                                    <span class="text-white">Git / GitHub Workflow</span>
+                                    <span style="color: var(--accent-cyan); font-weight: bold;">75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Badges & Tools -->
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h3 class="h5 mb-4 text-white"><i class="fa-solid fa-cubes text-warning me-2"></i>Tools & Technologies</h3>
+                                <div class="d-flex flex-wrap">
+                                    <span class="tech-badge"><i class="fa-brands fa-html5 text-danger"></i> HTML5</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-css3-alt text-primary"></i> CSS3</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-js text-warning"></i> JavaScript</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-bootstrap" style="color: #a855f7;"></i> Bootstrap 5</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-git-alt text-danger"></i> Git</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-github text-white"></i> GitHub</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-python text-warning"></i> Python</span>
+                                    <span class="tech-badge"><i class="fa-solid fa-terminal text-success"></i> CLI</span>
+                                    <span class="tech-badge"><i class="fa-solid fa-code text-info"></i> VS Code</span>
+                                    <span class="tech-badge"><i class="fa-brands fa-discord text-primary"></i> Discord API</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top border-secondary">
+                                <h4 class="h6 text-white mb-3">Hobbies & Setup</h4>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge rounded-pill bg-dark text-white border border-secondary px-3 py-2"><i class="fa-solid fa-gamepad text-info me-1"></i> PC Gaming</span>
+                                    <span class="badge rounded-pill bg-dark text-white border border-secondary px-3 py-2"><i class="fa-solid fa-film text-danger me-1"></i> Anime Streaming</span>
+                                    <span class="badge rounded-pill bg-dark text-white border border-secondary px-3 py-2"><i class="fa-solid fa-music text-success me-1"></i> J-Pop & Lofi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-5">
+            <div class="container py-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+                    <div>
+                        <h2 class="section-title mb-0">Projects & Highlights</h2>
+                    </div>
+                    <!-- Filters -->
+                    <div class="mt-3 mt-md-0">
+                        <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+                        <button class="filter-btn" onclick="filterProjects('web')">Web</button>
+                        <button class="filter-btn" onclick="filterProjects('gaming')">Gaming</button>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <!-- Project Item 1 -->
+                    <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                        <div class="glass-card project-card">
+                            <img src="https://placehold.co/600x400/121826/00f2fe?text=Personal+Portfolio" class="project-img" alt="Personal Portfolio">
+                            <div class="p-4 d-flex flex-column flex-grow-1">
+                                <h3 class="h5 fw-bold text-white mb-2">Personal Portfolio V2</h3>
+                                <p class="text-muted small flex-grow-1">A dark cyberpunk-inspired personal interactive website created with HTML5, Bootstrap 5, and custom vanilla JavaScript animations.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-dark text-white border border-secondary">HTML/CSS</span>
+                                    <span class="badge bg-dark text-white border border-secondary">Bootstrap</span>
+                                    <span class="badge bg-dark text-white border border-secondary">JS</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <a href="https://github.com/kiritosate" target="_blank" class="btn btn-sm btn-cyber-outline w-100"><i class="fa-brands fa-github me-1"></i> Code</a>
+                                    <a href="https://kiritosate.github.io/" target="_blank" class="btn btn-sm btn-cyber w-100"><i class="fa-solid fa-external-link me-1"></i> Live</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 2 -->
+                    <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                        <div class="glass-card project-card">
+                            <img src="https://placehold.co/600x400/121826/9d4edd?text=Anime+Vault+UI" class="project-img" alt="Anime Vault">
+                            <div class="p-4 d-flex flex-column flex-grow-1">
+                                <h3 class="h5 fw-bold text-white mb-2">Anime Tracker Concept</h3>
+                                <p class="text-muted small flex-grow-1">A clean UI interface concept designed for anime lovers to track currently airing shows, bookmarks, and favorite character profiles.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-dark text-white border border-secondary">Web UI</span>
+                                    <span class="badge bg-dark text-white border border-secondary">CSS Grid</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <a href="https://github.com/kiritosate" target="_blank" class="btn btn-sm btn-cyber-outline w-100"><i class="fa-brands fa-github me-1"></i> Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 3 -->
+                    <div class="col-md-6 col-lg-4 project-item" data-category="gaming">
+                        <div class="glass-card project-card">
+                            <img src="https://placehold.co/600x400/121826/f72585?text=Gaming+Highlights" class="project-img" alt="Gaming Highlights">
+                            <div class="p-4 d-flex flex-column flex-grow-1">
+                                <h3 class="h5 fw-bold text-white mb-2">YouTube Gaming Channel</h3>
+                                <p class="text-muted small flex-grow-1">Curated gaming content, walk-throughs, and highlight montages shared on YouTube for gaming enthusiasts.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-dark text-white border border-secondary">Content Creation</span>
+                                    <span class="badge bg-dark text-white border border-secondary">Gaming</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <a href="https://www.youtube.com/channel/UC3OqoC5u04De1P2HJ4glRdw" target="_blank" class="btn btn-sm btn-cyber w-100"><i class="fa-brands fa-youtube me-1"></i> Channel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5">
+            <div class="container py-4">
+                <h2 class="section-title">Let's Connect</h2>
+
+                <div class="row g-4 mt-2">
+                    <div class="col-lg-5">
+                        <div class="glass-card p-4 p-md-5 h-100">
+                            <h3 class="h4 mb-3 text-white">Get In Touch</h3>
+                            <p class="text-muted mb-4">
+                                Feel free to reach out whether you want to collaborate on a project, talk about coding, gaming, or anime!
+                            </p>
+
+                            <div class="d-flex flex-column gap-3 mb-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="social-link email"><i class="fa-solid fa-envelope"></i></div>
+                                    <div>
+                                        <div class="text-muted small">Email Me</div>
+                                        <div class="fw-bold text-white text-break">perverted.issei@gmail.com</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="social-link fb"><i class="fa-brands fa-facebook-f"></i></div>
+                                    <div>
+                                        <div class="text-muted small">Facebook</div>
+                                        <div class="fw-bold text-white">@iamkiritosate</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="social-link gh"><i class="fa-brands fa-github"></i></div>
+                                    <div>
+                                        <div class="text-muted small">GitHub</div>
+                                        <div class="fw-bold text-white">@kiritosate</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button onclick="copyEmail()" class="btn btn-cyber-outline w-100 mt-2 text-white">
+                                <i class="fa-regular fa-copy me-2"></i>Copy Email Address
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form UI -->
+                    <div class="col-lg-7">
+                        <div class="glass-card p-4 p-md-5 h-100">
+                            <h3 class="h4 mb-4 text-white">Send a Message</h3>
+                            <form onsubmit="handleFormSubmit(event)">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label text-white">Your Name</label>
+                                        <input type="text" class="form-control rounded-3 p-3" id="name" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label text-white">Your Email</label>
+                                        <input type="email" class="form-control rounded-3 p-3" id="email" placeholder="name@example.com" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label text-white">Subject</label>
+                                        <input type="text" class="form-control rounded-3 p-3" id="subject" placeholder="Project Collaboration / Gaming" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label text-white">Message</label>
+                                        <textarea class="form-control rounded-3 p-3" id="message" rows="4" placeholder="Write your message here..." required></textarea>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-cyber w-100 py-3">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-4 border-top border-secondary text-center">
+            <div class="container">
+                <p class="mb-0 small text-white">&copy; <span id="year"></span> Kirito Sate. Built with <i class="fa-solid fa-heart text-danger"></i>, Bootstrap & JavaScript.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Custom Toast Notification -->
+    <div class="toast-container">
+        <div id="toast" class="custom-toast">
+            <i class="fa-solid fa-circle-check text-info fs-5"></i>
+            <span id="toast-message">Notification message here</span>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Interactive Scripts -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Dynamic Typing Animation
+        const words = ["College Student", "Web Developer", "Gamer & Weeb", "Open Source Enthusiast"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let nextSpeed = isDeleting ? typingSpeed / 2 : typingSpeed;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                nextSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                nextSpeed = 500;
+            }
+
+            setTimeout(typeEffect, nextSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', typeEffect);
+
+        // 2. Interactive Canvas Particle System
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        let mouse = { x: null, y: null, radius: 120 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = Math.random() > 0.5 ? 'rgba(0, 242, 254, ' : 'rgba(157, 78, 221, ';
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+                // Mouse interaction
+                if (mouse.x && mouse.y) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        this.x -= (dx / distance) * 2;
+                        this.y -= (dy / distance) * 2;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.color + this.alpha + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < particleCount; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // 3. Project Filter System
+        function filterProjects(category) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 4. Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // 5. Copy Email Action
+        function copyEmail() {
+            const email = "perverted.issei@gmail.com";
+            
+            // Clipboard fallback logic
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast("Email address copied to clipboard!");
+        }
+
+        // 6. Contact Form Demo Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showToast("Thank you! Your message has been sent successfully.");
+            event.target.reset();
+        }
+    </script>
 </body>
 </html>
