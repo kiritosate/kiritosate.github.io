@@ -2,102 +2,690 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="heart.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Love</title>
+    <title>My Special Someone | A Romantic Experience</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for romantic icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseGold: '#e8b4b8',
+                        deepRed: '#800020',
+                        blushPink: '#ffe6e8',
+                        softPink: '#fff0f3',
+                        passionRed: '#d90429',
+                        goldAccent: '#dfb76c'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        cursive: ['"Alex Brush"', 'cursive'],
+                        body: ['"Poppins"', 'sans-serif'],
+                        garamond: ['"Cormorant Garamond"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Keyframe Animations & Fine Styling */
+        body {
+            background: linear-gradient(135deg, #1a050b 0%, #2b0814 35%, #4a0e17 70%, #1a050b 100%);
+            color: #f8f9fa;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 240, 243, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.15);
+        }
+
+        /* Ambient Glow Effect */
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(217, 4, 41, 0.4);
+        }
+
+        /* Floating Hearts Canvas Overlay */
+        #heartCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Polaroid Photo Card styling */
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 24px 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #333;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-8px) rotate(1deg) scale(1.02);
+            box-shadow: 0 15px 35px rgba(217, 4, 41, 0.3);
+        }
+
+        /* Secret Envelope Styling */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            background: #d90429;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.5s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.03);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-top: 100px solid #ef233c;
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 3;
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .letter-inside {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            right: 15px;
+            bottom: 10px;
+            background: #fff0f3;
+            border-radius: 4px;
+            padding: 15px;
+            color: #2b0814;
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .envelope.open .letter-inside {
+            transform: translateY(-80px);
+            z-index: 4;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Pulse Heart Beat */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        .animate-heartbeat {
+            animation: heartbeat 2s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a050b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d90429;
+        }
+    </style>
 </head>
-<style type="text/css">
-    *{
-        font-family: 'cursive', 'Lucida Handwriting', 'Brush Script MT', cursive;
-    }
-    .container{
-        position: absolute;
-        width: 85%;
-        left: 50%;
-        top: 25px;
-        transform: translate(-50%);
-        background-image: url();
-        justify-items: center;
-        align-items: center;
-    }
-    p{
-        text-align: justify!important;
-    }
-    audio{
-        width: 100%;
-    }
-    #imgs{
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        box-shadow: 2px 2px 2px 3px rgba(255, 0, 51, 0.096);
-    }
-    .img{
-        width: 32.5%;
-        overflow: hidden!important;
-        height: 5%;
-    }
-    #imgs>.img img{
-        width: 100%;
-        object-fit: cover;
-    }
-    #keychain{
-        position:relative;
-        width: 100%;
-    }
-</style>
-<body>
-    <div class="container">
-        <h1>My Special Someone</h1>
-        <p>
-            In the symphony of life, your love is the melody that fills my heart with joy. From the moment our paths intertwined, every beat of my heart has played a song of love composed exclusively for you.
+<body class="relative flex flex-col items-center justify-between min-h-screen py-8 px-4 sm:px-6 lg:px-8">
 
-            You are the sunshine that brightens my darkest days and the moonlight that guides me through the night. Your laughter is the sweetest melody, and your touch, the most comforting harmony. In the canvas of my life, you are the most vibrant and cherished color.
+    <!-- Floating Canvas Background -->
+    <canvas id="heartCanvas"></canvas>
 
-            As we navigate the journey of life hand in hand, I am grateful for every shared smile, every whispered secret, and every silent understanding that binds us together. Your presence is not just a gift; it's a celebration of the extraordinary love we've built.
-
-            In your eyes, I find a home where I belong, and in your embrace, I discover a sanctuary of love. With you, every moment is a treasure, and every day is a new chapter written with the ink of our shared dreams.
-
-            Here's to us, to the love that grows stronger with each passing day, and to the future we'll create together. You are my love, my confidant, and my greatest blessing.
-
-            Forever Yours,
-            Your Admirer<3
-        </p>
-        <br>
-        <div class="key">
-            <img id="keychain" src="aK17 KEYCHAIN.png" alt="mylove">
-        </div>
-        
-        <div id="imgs">
-            <div class="img">
-               <img src=""> 
-            </div>
-            <div class="img">
-                <img src=""> 
-             </div>
-             <div class="img">
-                <img src=""> 
-             </div>
-        </div>
-        <br>
-        <audio controls autoplay>
-            <source src="music.mp3" type="audio/mp3">
-            <source src="music.mp3" type="audio/ogg">
-            Your browser does not support the audio element.
-        </audio>
+    <!-- Top Autoplay / Audio Prompt Bar if browser blocks audio -->
+    <div id="audioNotice" class="fixed top-4 z-50 bg-passionRed/90 text-white px-6 py-3 rounded-full shadow-lg flex items-center space-x-3 backdrop-blur-md border border-white/20 transition-all duration-500 cursor-pointer hover:bg-passionRed">
+        <i class="fas fa-music animate-spin text-lg"></i>
+        <span class="text-xs sm:text-sm font-medium">Click anywhere to play romantic background music</span>
+        <button id="dismissAudioNotice" class="ml-2 hover:opacity-80"><i class="fas fa-times"></i></button>
     </div>
-    <script type="text/javascript">
-        // Wait for the DOM content to be fully loaded
-        document.addEventListener("DOMContentLoaded", function() {
-            // Function to play the audio
-            function playMusic() {
-                var audio = document.getElementsByTagName("audio")[0];
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-4xl w-full mx-auto space-y-12 my-auto">
+        
+        <!-- Header Banner Section -->
+        <header class="text-center space-y-4 pt-6">
+            <div class="inline-block relative">
+                <span class="text-passionRed text-4xl sm:text-5xl animate-heartbeat inline-block">❤️</span>
+                <h1 id="pageTitle" contenteditable="true" title="Click to edit title" class="font-cursive text-5xl sm:text-7xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-roseGold to-red-400 font-bold px-4 py-2 border-b border-transparent hover:border-pink-300/30 transition-all outline-none">
+                    My Special Someone
+                </h1>
+            </div>
+            <p class="font-serif italic text-lg sm:text-xl text-pink-200/90 max-w-xl mx-auto">
+                "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."
+            </p>
+        </header>
+
+        <!-- Dynamic Relationship Anniversary Counter -->
+        <section class="glass-card rounded-2xl p-6 text-center space-y-4 border border-roseGold/20">
+            <div class="flex items-center justify-center space-x-2 text-roseGold font-serif text-lg">
+                <i class="fas fa-hourglass-start text-passionRed"></i>
+                <span id="counterLabel" contenteditable="true">Days of Love & Togetherness</span>
+                <button onclick="document.getElementById('anniversaryPicker').click()" class="text-xs text-pink-300 hover:text-white underline ml-2" title="Change Anniversary Date">
+                    <i class="fas fa-edit"></i> Edit Date
+                </button>
+                <input type="date" id="anniversaryPicker" class="hidden" value="2023-02-14" onchange="updateAnniversaryDate(this.value)">
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-2">
+                <div class="bg-black/30 rounded-xl p-3 border border-pink-500/10">
+                    <span id="daysCount" class="text-3xl sm:text-4xl font-bold font-serif text-pink-300">0</span>
+                    <span class="block text-xs text-gray-300 uppercase tracking-widest mt-1">Days</span>
+                </div>
+                <div class="bg-black/30 rounded-xl p-3 border border-pink-500/10">
+                    <span id="hoursCount" class="text-3xl sm:text-4xl font-bold font-serif text-pink-300">0</span>
+                    <span class="block text-xs text-gray-300 uppercase tracking-widest mt-1">Hours</span>
+                </div>
+                <div class="bg-black/30 rounded-xl p-3 border border-pink-500/10">
+                    <span id="minutesCount" class="text-3xl sm:text-4xl font-bold font-serif text-pink-300">0</span>
+                    <span class="block text-xs text-gray-300 uppercase tracking-widest mt-1">Minutes</span>
+                </div>
+                <div class="bg-black/30 rounded-xl p-3 border border-pink-500/10">
+                    <span id="secondsCount" class="text-3xl sm:text-4xl font-bold font-serif text-pink-300">0</span>
+                    <span class="block text-xs text-gray-300 uppercase tracking-widest mt-1">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Romantic Love Letter Card -->
+        <section class="glass-card-light rounded-3xl p-6 sm:p-10 md:p-12 text-gray-800 space-y-6 relative overflow-hidden shadow-2xl">
+            <!-- Decorative corner elements -->
+            <div class="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-roseGold/40 to-transparent rounded-br-full pointer-events-none"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-passionRed/20 to-transparent rounded-tl-full pointer-events-none"></div>
+
+            <div class="flex justify-between items-center border-b border-rose-200 pb-4">
+                <span class="font-cursive text-3xl sm:text-4xl text-passionRed">Dearest Love,</span>
+                <button id="toggleEditLetter" onclick="toggleLetterEdit()" class="text-xs bg-rose-100 hover:bg-rose-200 text-passionRed px-3 py-1.5 rounded-full transition flex items-center gap-1 font-body">
+                    <i class="fas fa-pen"></i> <span id="editBtnText">Edit Letter</span>
+                </button>
+            </div>
+
+            <!-- Letter Body Text -->
+            <div id="letterContent" contenteditable="false" class="font-garamond text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-800 space-y-4 outline-none transition-all duration-300 rounded-lg p-2">
+                <p>
+                    In the symphony of life, your love is the melody that fills my heart with joy. From the moment our paths intertwined, every beat of my heart has played a song composed exclusively for you.
+                </p>
+                <p>
+                    You are the sunshine that brightens my darkest days and the moonlight that guides me through the night. Your laughter is the sweetest rhythm, and your touch, the most comforting harmony. In the canvas of my life, you are the most vibrant color.
+                </p>
+                <p>
+                    As we navigate the journey of life hand in hand, I am grateful for every shared smile, every whispered secret, and every silent understanding that binds us together. Your presence is not just a gift; it's a celebration of the extraordinary love we built.
+                </p>
+                <p>
+                    In your eyes, I find a home where I belong, and in your embrace, I discover a sanctuary of peace. With you, every single moment is a treasure, and every day is a brand new chapter written with the ink of our shared dreams.
+                </p>
+            </div>
+
+            <div class="pt-6 border-t border-rose-200 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+                <div>
+                    <p class="font-garamond italic text-lg text-gray-600">Forever Yours,</p>
+                    <p id="senderName" contenteditable="true" class="font-cursive text-3xl text-passionRed font-bold outline-none border-b border-transparent hover:border-passionRed/40">Your Admirer ❤️</p>
+                </div>
+                <button onclick="triggerHeartBurst(event)" class="self-center sm:self-auto bg-gradient-to-r from-passionRed to-pink-600 text-white font-body text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-pink-500/50 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2">
+                    <i class="fas fa-heart text-pink-200 animate-pulse"></i>
+                    <span>Send Love Burst</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Polaroid Interactive Photo Gallery -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="font-serif text-3xl sm:text-4xl text-roseGold font-semibold">Captured Moments</h2>
+                <p class="text-xs sm:text-sm text-pink-200/70">Click any frame below to upload your favorite photos together</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+                <!-- Polaroid Slot 1 -->
+                <div class="polaroid rounded-lg transform sm:-rotate-3 cursor-pointer group" onclick="document.getElementById('imgInput1').click()">
+                    <div class="relative overflow-hidden rounded bg-gray-100 aspect-square">
+                        <img id="polaroidImg1" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Love Moment 1" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-medium">
+                            <i class="fas fa-camera text-2xl mb-1 block"></i>
+                        </div>
+                    </div>
+                    <p id="caption1" contenteditable="true" onclick="event.stopPropagation()" class="font-cursive text-2xl text-center text-gray-700 mt-3 outline-none">Sweet Smiles</p>
+                    <input type="file" id="imgInput1" class="hidden" accept="image/*" onchange="previewImage(this, 'polaroidImg1')">
+                </div>
+
+                <!-- Polaroid Slot 2 -->
+                <div class="polaroid rounded-lg transform sm:rotate-2 cursor-pointer group" onclick="document.getElementById('imgInput2').click()">
+                    <div class="relative overflow-hidden rounded bg-gray-100 aspect-square">
+                        <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Love Moment 2" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-medium">
+                            <i class="fas fa-camera text-2xl mb-1 block"></i>
+                        </div>
+                    </div>
+                    <p id="caption2" contenteditable="true" onclick="event.stopPropagation()" class="font-cursive text-2xl text-center text-gray-700 mt-3 outline-none">Hand in Hand</p>
+                    <input type="file" id="imgInput2" class="hidden" accept="image/*" onchange="previewImage(this, 'polaroidImg2')">
+                </div>
+
+                <!-- Polaroid Slot 3 -->
+                <div class="polaroid rounded-lg transform sm:-rotate-2 cursor-pointer group" onclick="document.getElementById('imgInput3').click()">
+                    <div class="relative overflow-hidden rounded bg-gray-100 aspect-square">
+                        <img id="polaroidImg3" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Love Moment 3" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-medium">
+                            <i class="fas fa-camera text-2xl mb-1 block"></i>
+                        </div>
+                    </div>
+                    <p id="caption3" contenteditable="true" onclick="event.stopPropagation()" class="font-cursive text-2xl text-center text-gray-700 mt-3 outline-none">Forever & Always</p>
+                    <input type="file" id="imgInput3" class="hidden" accept="image/*" onchange="previewImage(this, 'polaroidImg3')">
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Surprise Envelope & Reasons Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pt-6">
+            
+            <!-- Envelope Interactive Widget -->
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <h3 class="font-serif text-2xl text-pink-200">A Little Secret Note</h3>
+                <div class="envelope-wrapper py-10">
+                    <div id="secretEnvelope" class="envelope flex items-center justify-center" onclick="toggleEnvelope()">
+                        <div class="envelope-flap"></div>
+                        <div class="letter-inside text-center flex flex-col justify-center items-center">
+                            <i class="fas fa-quote-left text-passionRed/40 text-xl mb-1"></i>
+                            <p class="font-cursive text-2xl text-passionRed font-semibold">You are my favorite place to go when my mind searches for peace.</p>
+                            <span class="text-xs text-gray-500 mt-2 font-body">❤️ Always & Forever</span>
+                        </div>
+                        <span id="envelopeHint" class="text-white font-cursive text-2xl z-10 transition opacity-100">Click to Open 💌</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reasons Why I Love You Interactive Flip Cards -->
+            <div class="space-y-4">
+                <h3 class="font-serif text-2xl text-pink-200 text-center md:text-left">Reasons Why I Love You</h3>
+                <div class="space-y-3">
+                    <div class="glass-card p-4 rounded-xl border-l-4 border-passionRed hover:bg-white/10 transition cursor-pointer" onclick="this.classList.toggle('bg-white/20')">
+                        <h4 class="font-semibold text-roseGold flex items-center gap-2">
+                            <i class="fas fa-star text-amber-400"></i> Your Kind Heart
+                        </h4>
+                        <p class="text-xs sm:text-sm text-gray-200 mt-1">The effortless way you care for everyone around you inspires me every single day.</p>
+                    </div>
+
+                    <div class="glass-card p-4 rounded-xl border-l-4 border-pink-400 hover:bg-white/10 transition cursor-pointer" onclick="this.classList.toggle('bg-white/20')">
+                        <h4 class="font-semibold text-roseGold flex items-center gap-2">
+                            <i class="fas fa-smile text-pink-300"></i> Your Infectious Laugh
+                        </h4>
+                        <p class="text-xs sm:text-sm text-gray-200 mt-1">Hearing your laugh immediately turns my darkest moments into bright sunshine.</p>
+                    </div>
+
+                    <div class="glass-card p-4 rounded-xl border-l-4 border-roseGold hover:bg-white/10 transition cursor-pointer" onclick="this.classList.toggle('bg-white/20')">
+                        <h4 class="font-semibold text-roseGold flex items-center gap-2">
+                            <i class="fas fa-home text-roseGold"></i> My Safe Haven
+                        </h4>
+                        <p class="text-xs sm:text-sm text-gray-200 mt-1">No matter where we are, being in your arms feels like coming home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modern Audio Music Player Bar -->
+        <section class="glass-card rounded-2xl p-4 sm:p-6 shadow-xl border border-white/10 space-y-3">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                
+                <!-- Track Title & Audio wave -->
+                <div class="flex items-center space-x-4 w-full sm:w-auto">
+                    <div id="albumArt" class="w-12 h-12 rounded-full bg-gradient-to-tr from-passionRed to-pink-400 flex items-center justify-center text-white shadow-md animate-spin" style="animation-duration: 8s; animation-play-state: paused;">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div>
+                        <h4 id="songTitle" class="font-semibold text-sm sm:text-base text-pink-100">Romantic Melody</h4>
+                        <p id="songArtist" class="text-xs text-gray-300">Background Harmony</p>
+                    </div>
+                </div>
+
+                <!-- Custom Audio Player Controls -->
+                <div class="flex items-center space-x-4">
+                    <button id="playBtn" onclick="togglePlay()" class="w-12 h-12 rounded-full bg-passionRed text-white flex items-center justify-center shadow-lg hover:bg-red-600 hover:scale-105 transition active:scale-95">
+                        <i id="playIcon" class="fas fa-play text-lg ml-0.5"></i>
+                    </button>
+                    
+                    <button onclick="document.getElementById('audioUploader').click()" class="text-xs bg-white/10 hover:bg-white/20 text-pink-200 px-3 py-2 rounded-lg transition border border-white/10 flex items-center gap-1.5" title="Upload custom song">
+                        <i class="fas fa-upload"></i>
+                        <span class="hidden sm:inline">Change Song</span>
+                    </button>
+                    <input type="file" id="audioUploader" class="hidden" accept="audio/*" onchange="loadCustomAudio(this)">
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="space-y-1">
+                <input type="range" id="audioProgress" value="0" max="100" class="w-full h-1.5 bg-black/40 rounded-lg appearance-none cursor-pointer accent-passionRed" oninput="seekAudio(this.value)">
+                <div class="flex justify-between text-[10px] text-gray-400">
+                    <span id="currentTime">0:00</span>
+                    <span id="durationTime">0:00</span>
+                </div>
+            </div>
+
+            <!-- HTML Audio Element fallback -->
+            <audio id="bgAudio" loop preload="auto">
+                <source src="music.mp3" type="audio/mp3">
+                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112185.mp3" type="audio/mp3">
+                Your browser does not support the audio tag.
+            </audio>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center text-xs text-pink-200/50 py-6">
+        <p>Crafted with endless ❤️ for my one and only.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Anniversary Date Countdown Logic
+        let anniversaryDate = new Date("2023-02-14T00:00:00").getTime();
+
+        function updateAnniversaryDate(newDateString) {
+            if (newDateString) {
+                anniversaryDate = new Date(newDateString + "T00:00:00").getTime();
+                calculateTimeTogether();
+            }
+        }
+
+        function calculateTimeTogether() {
+            const now = new Date().getTime();
+            const difference = Math.abs(now - anniversaryDate);
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('daysCount').innerText = days;
+            document.getElementById('hoursCount').innerText = hours;
+            document.getElementById('minutesCount').innerText = minutes;
+            document.getElementById('secondsCount').innerText = seconds;
+        }
+
+        setInterval(calculateTimeTogether, 1000);
+        calculateTimeTogether();
+
+        // 2. Letter Editable Toggle
+        let isEditing = false;
+        function toggleLetterEdit() {
+            const letter = document.getElementById('letterContent');
+            const btnText = document.getElementById('editBtnText');
+            isEditing = !isEditing;
+
+            if (isEditing) {
+                letter.contentEditable = "true";
+                letter.focus();
+                letter.classList.add("bg-white/60", "ring-2", "ring-passionRed");
+                btnText.innerText = "Save Letter";
+            } else {
+                letter.contentEditable = "false";
+                letter.classList.remove("bg-white/60", "ring-2", "ring-passionRed");
+                btnText.innerText = "Edit Letter";
+            }
+        }
+
+        // 3. Image Upload Preview Handler
+        function previewImage(input, targetImgId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(targetImgId).src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // 4. Secret Envelope Toggle
+        function toggleEnvelope() {
+            const envelope = document.getElementById('secretEnvelope');
+            const hint = document.getElementById('envelopeHint');
+            envelope.classList.toggle('open');
+            if (envelope.classList.contains('open')) {
+                hint.style.opacity = '0';
+            } else {
+                setTimeout(() => hint.style.opacity = '1', 300);
+            }
+        }
+
+        // 5. Custom Audio Player Logic
+        const audio = document.getElementById('bgAudio');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const albumArt = document.getElementById('albumArt');
+        const audioProgress = document.getElementById('audioProgress');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationTimeEl = document.getElementById('durationTime');
+        const audioNotice = document.getElementById('audioNotice');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playIcon.className = 'fas fa-pause text-lg';
+                    albumArt.style.animationPlayState = 'running';
+                    hideAudioNotice();
+                }).catch(() => {
+                    console.log('Autoplay blocked or audio load failed');
+                });
+            } else {
+                audio.pause();
+                playIcon.className = 'fas fa-play text-lg ml-0.5';
+                albumArt.style.animationPlayState = 'paused';
+            }
+        }
+
+        function hideAudioNotice() {
+            if (audioNotice) {
+                audioNotice.style.opacity = '0';
+                setTimeout(() => audioNotice.remove(), 500);
+            }
+        }
+
+        document.getElementById('dismissAudioNotice').addEventListener('click', (e) => {
+            e.stopPropagation();
+            hideAudioNotice();
+        });
+
+        // Global user interaction handler for browser autoplay policy
+        document.body.addEventListener('click', function autoPlayOnFirstClick() {
+            if (audio.paused && audioNotice) {
+                audio.play().then(() => {
+                    playIcon.className = 'fas fa-pause text-lg';
+                    albumArt.style.animationPlayState = 'running';
+                    hideAudioNotice();
+                }).catch(() => {});
+            }
+            document.body.removeEventListener('click', autoPlayOnFirstClick);
+        }, { once: true });
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                audioProgress.value = progressPercent;
+                currentTimeEl.innerText = formatTime(audio.currentTime);
+                durationTimeEl.innerText = formatTime(audio.duration);
+            }
+        });
+
+        function seekAudio(value) {
+            if (audio.duration) {
+                audio.currentTime = (value / 100) * audio.duration;
+            }
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function loadCustomAudio(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const fileURL = URL.createObjectURL(file);
+                audio.src = fileURL;
+                document.getElementById('songTitle').innerText = file.name.replace(/\.[^/.]+$/, "");
+                document.getElementById('songArtist').innerText = "Local Custom Song";
                 audio.play();
+                playIcon.className = 'fas fa-pause text-lg';
+                albumArt.style.animationPlayState = 'running';
+                hideAudioNotice();
+            }
+        }
+
+        // 6. Canvas Particle Floating Hearts Background
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class FloatingHeart {
+            constructor() {
+                this.reset();
             }
 
-            // Call the playMusic function when the DOM is loaded
-            playMusic();
-        });
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 12 + 8;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.swing = Math.random() * 0.03;
+                this.swingAngle = Math.random() * Math.PI * 2;
+                this.color = `rgba(217, 4, 41, ${this.opacity})`;
+            }
+
+            update() {
+                this.y -= this.speed;
+                this.swingAngle += this.swing;
+                this.x += Math.sin(this.swingAngle) * 0.5;
+
+                if (this.y < -20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                const d = this.size;
+                // Draw heart shape
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-d / 2, -d / 2, -d, d / 3, 0, d);
+                ctx.bezierCurveTo(d, d / 3, d / 2, -d / 2, 0, 0);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        const heartsArray = Array.from({ length: 35 }, () => new FloatingHeart());
+
+        function animateHearts() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            heartsArray.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+            requestAnimationFrame(animateHearts);
+        }
+        animateHearts();
+
+        // 7. Interactive Click Burst Heart Effect
+        function triggerHeartBurst(event) {
+            const burstCount = 12;
+            const x = event.clientX || window.innerWidth / 2;
+            const y = event.clientY || window.innerHeight / 2;
+
+            for (let i = 0; i < burstCount; i++) {
+                const heartEl = document.createElement('div');
+                heartEl.innerHTML = '❤️';
+                heartEl.className = 'fixed text-2xl pointer-events-none z-50 transition-all duration-1000 ease-out';
+                heartEl.style.left = `${x}px`;
+                heartEl.style.top = `${y}px`;
+
+                document.body.appendChild(heartEl);
+
+                const angle = (Math.PI * 2 / burstCount) * i;
+                const velocity = Math.random() * 100 + 50;
+                const targetX = Math.cos(angle) * velocity;
+                const targetY = Math.sin(angle) * velocity - 80;
+
+                setTimeout(() => {
+                    heartEl.style.transform = `translate(${targetX}px, ${targetY}px) scale(1.5) rotate(${Math.random() * 360}deg)`;
+                    heartEl.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => heartEl.remove(), 1000);
+            }
+        }
     </script>
 </body>
 </html>
